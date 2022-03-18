@@ -1,30 +1,102 @@
 html {
     font-size: 24px;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.5em;
 }
 
 body {
-    padding: 0;
+    padding: 3em 0;
     margin: 0;
     overflow-y: scroll;
+    background-color: white;
 }
 
-header > *,
+.shadow {
+    position: fixed;
+    inset: 0;
+    box-shadow: inset 0 0 1.5em 4em white;
+    z-index: 1;
+}
+
+nav, h1, h2, h3 {
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/*region Navigation*/
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    font-weight: bold;
+}
+
+nav > * {
+    margin: 0 auto;
+    max-width: fit-content;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    margin-right: 1.5em;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    position: relative;
+    padding: .5em;
+}
+
+nav a:last-child {
+    margin-right: 0;
+}
+
+nav a::before,
+nav a::after {
+    position: absolute;
+    content: '';
+    border-bottom: 3px solid black;
+    border-radius: 1em;
+    bottom: .3em;
+    transition: transform .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+nav a::before {
+    width: 1em;
+    transform-origin: left;
+}
+
+nav a::after {
+    width: 82%;
+    left: 1em;
+    transform: translateX(110%);
+}
+
+nav a:hover::before {
+    transform: scaleX(0.3);
+}
+
+nav a:hover::after {
+    transform: translateX(0);
+}
+
+a::first-letter {
+    color: red;
+}
+
+.active-link::before {
+    transform: scaleX(0.3);
+}
+
+.active-link::after {
+    transform: translateX(0);
+}
+
+/*endregion*/
+
 main {
     margin: 0 auto;
-}
-
-header {
-    background: hsl(0, 0%, 0%, 25%);
-}
-
-header > * {
-    max-width: fit-content;
-    padding: 0.5em 0;
-}
-
-main {
     max-width: 60%;
 }
 
@@ -46,21 +118,33 @@ span {
     white-space: nowrap;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-    margin-right: 2.5em;
-}
-
-a:last-child {
-    margin-right: 0;
-}
-
 section {
-    animation: anim ease-in-out 1s;
+    animation: fadeIn ease-in-out 1s;
 }
 
-@keyframes anim {
+p {
+    margin: 1em auto;
+}
+
+blockquote p {
+    padding: 15px;
+    background: #eee;
+    border-radius: 0.5em;
+}
+
+blockquote p::before {
+    content: open-quote;
+}
+
+blockquote p::after {
+    content: close-quote;
+}
+
+figcaption {
+    text-align: right;
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(-1em);
