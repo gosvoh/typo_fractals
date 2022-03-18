@@ -42,7 +42,7 @@ nav a {
     display: inline-block;
     text-decoration: none;
     color: black;
-    margin-right: 1.5em;
+    margin-right: 0.5em;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     position: relative;
     padding: .5em;
